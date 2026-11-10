@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetCare Pro · Gestión Clínica Veterinaria</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230D9488'/%3E%3Cpath d='M26 16h12v10h10v12H38v10H26V38H16V26h10V16z' fill='%23FFFFFF'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="mobile-backdrop" class="mobile-backdrop hidden"></div>
+
+    <div class="app-shell">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-logo" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="brand-title">VetCare Pro</span>
+                        <span class="brand-subtitle">Gestión Clínica</span>
+                    </div>
+                </div>
+                <button id="close-sidebar-btn" class="icon-btn mobile-only" aria-label="Cerrar menú">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav" aria-label="Navegación principal">
+                <span class="nav-section-label">Clínica</span>
+                <button class="nav-item active" data-view="dashboard">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="9" rx="1.5"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1.5"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1.5"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1.5"/>
+                    </svg>
+                    <span>Panel Principal</span>
+                </button>
+
+                <button class="nav-item" data-view="citas">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <path d="M16 2v4M8 2v4M3 10h18"/>
+                    </svg>
+                    <span>Agenda de Citas</span>
+                    <span id="badge-citas" class="nav-badge hidden">0</span>
+                </button>
+
+                <button class="nav-item" data-view="mascotas">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/>
+                        <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>
+                    </svg>
+                    <span>Pacientes</span>
+                    <span id="badge-mascotas" class="nav-badge neutral hidden">0</span>
+                </button>
+
+                <button class="nav-item" data-view="propietarios">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Propietarios</span>
+                    <span id="badge-propietarios" class="nav-badge neutral hidden">0</span>
+                </button>
+
+                <span class="nav-section-label">Historial & Prevención</span>
+
+                <button class="nav-item" data-view="consultas">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <path d="M14 2v6h6M9 15h6M12 12v6"/>
+                    </svg>
+                    <span>Consultas Médicas</span>
+                </button>
+
+                <button class="nav-item" data-view="vacunas">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m18 2 4 4M17 7l3-3M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/>
+                        <path d="m9 11 4 4M5 19l-3 3"/>
+                    </svg>
+                    <span>Vacunas y Alertas</span>
+                    <span id="badge-vacunas" class="nav-badge danger hidden">0</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div id="api-connection-pill" class="badge badge-neutral" style="justify-content:center;padding:6px 10px;">
+                    Conectando con backend...
+                </div>
+                <div class="sidebar-tip">
+                    <strong>Atajo rápido</strong>
+                    <span>Pulsa <kbd>Ctrl</kbd> + <kbd>K</kbd> para buscar pacientes o dueños al instante.</span>
+                </div>
+                <div class="sidebar-links">
+                    <a href="/swagger-ui.html" target="_blank" rel="noopener">API Swagger</a>
+                    <span>·</span>
+                    <a href="/h2-console" target="_blank" rel="noopener">Base H2</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <div class="main-area">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="open-sidebar-btn" class="icon-btn mobile-only" aria-label="Abrir menú">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </button>
+
+                    <div class="global-search-wrap">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input
+                            id="global-search-input"
+                            type="search"
+                            placeholder="Buscar mascota, propietario, teléfono o cita... (Ctrl+K)"
+                            autocomplete="off"
+                        />
+                        <div id="global-search-results" class="search-dropdown hidden"></div>
+                    </div>
+                </div>
+
+                <div class="topbar-actions">
+                    <button id="quick-new-cita-btn" class="btn btn-primary btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        <span>Nueva Cita</span>
+                    </button>
+                    <button id="quick-new-mascota-btn" class="btn btn-outline btn-sm hide-xs">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        <span>Paciente</span>
+                    </button>
+                    <button id="refresh-btn" class="icon-btn" title="Actualizar datos" aria-label="Actualizar datos">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M8 16H3v5"/>
+                        </svg>
+                    </button>
+                    <button id="theme-toggle-btn" class="icon-btn" title="Cambiar tema claro/oscuro" aria-label="Cambiar tema">
+                        <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                        </svg>
+                        <svg id="theme-icon-sun" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="M12 2v2M12 20v2m-7.07-14.07 1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2m-14.07 7.07 1.41-1.41m11.32-11.32 1.41-1.41"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <main id="view-container" class="view-container">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Cargando sistema veterinario...</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Expediente Clínico Slide-over Drawer -->
+    <div id="drawer-backdrop" class="modal-backdrop hidden"></div>
+    <aside id="expediente-drawer" class="drawer hidden" aria-modal="true" role="dialog" aria-labelledby="drawer-title">
+        <div class="drawer-header">
+            <div class="drawer-title-group">
+                <span class="drawer-eyebrow">Expediente Clínico</span>
+                <h2 id="drawer-title">Cargando...</h2>
+            </div>
+            <div class="drawer-header-actions no-print">
+                <button id="print-expediente-btn" class="btn btn-outline btn-sm" title="Imprimir o guardar PDF">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    <span>Imprimir</span>
+                </button>
+                <button id="close-drawer-btn" class="icon-btn" aria-label="Cerrar expediente">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="expediente-body" class="drawer-body"></div>
+    </aside>
+
+    <!-- Generic Form Modal -->
+    <div id="form-modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="form-modal-title">
+            <div class="modal-header">
+                <h3 id="form-modal-title">Formulario</h3>
+                <button id="close-form-modal-btn" class="icon-btn" aria-label="Cerrar modal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="form-modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal-dialog modal-sm" role="alertdialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+            <div class="modal-header">
+                <h3 id="confirm-modal-title">Confirmar acción</h3>
+                <button id="close-confirm-modal-btn" class="icon-btn" aria-label="Cerrar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-modal-message" class="confirm-message"></p>
+                <div class="modal-actions">
+                    <button id="confirm-cancel-btn" class="btn btn-outline">Cancelar</button>
+                    <button id="confirm-accept-btn" class="btn btn-danger">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Stack -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
